@@ -1,7 +1,7 @@
-package com.naumen.scala.utils.tests
+package com.naumen.scala.forms.tests
 
 import org.specs2.mutable._
-import com.naumen.scala.utils.FieldNameGetter
+import com.naumen.scala.forms.FieldNameGetter
 
 class FieldNameGetterTest extends Specification with FieldNameGetter{
   "FieldNameGetter" should {

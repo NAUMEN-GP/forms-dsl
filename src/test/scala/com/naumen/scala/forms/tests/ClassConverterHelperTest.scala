@@ -1,7 +1,7 @@
-package com.naumen.scala.utils.tests
+package com.naumen.scala.forms.tests
 
 import org.specs2.mutable.Specification
-import com.naumen.scala.utils.CaseClassMapConverter
+import com.naumen.scala.forms.CaseClassMapConverter
 
 class ClassConverterHelperTest extends Specification with CaseClassMapConverter {
 
