@@ -3,7 +3,7 @@ import Keys._
 
 object Build extends Build {
 
-  lazy val buildVersion =  "2.1.3"
+  lazy val buildVersion =  "0.0.1-SNAPSHOT"
 
   lazy val root = Project(id = "forms-dsl", base = file(".")).settings(
     version := buildVersion,
