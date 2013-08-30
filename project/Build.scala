@@ -1,13 +1,11 @@
 import sbt._
 import Keys._
 
-object MinimalBuild extends Build {
+object Build extends Build {
 
   lazy val buildVersion =  "2.1.3"
 
-  lazy val play =  "play" %% "play" % buildVersion
-//
-  lazy val root = Project(id = "play-forms-improved", base = file(".")).settings(
+  lazy val root = Project(id = "forms-dsl", base = file(".")).settings(
     version := buildVersion,
 
   libraryDependencies += "com.naumen" %% "scala-reflective-utils" % "0.0.1-SNAPSHOT" ,
@@ -21,7 +19,6 @@ object MinimalBuild extends Build {
     "releases"  at "http://oss.sonatype.org/content/repositories/releases")   ,
 
     organization := "com.naumen",
-    libraryDependencies += play,
     mainClass in (Compile, run) := Some("play.core.server.NettyServer")
   )
 }
