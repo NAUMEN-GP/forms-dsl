@@ -10,6 +10,7 @@ object FieldDescription {
   val ListElementType: String = "ListElementType"
   val Required: String = "Required"
   val Label: String = "Label"
+
 }
 
 case class FieldDescriptionBuilder[T](propertyMap: Map[String, Any]) {
