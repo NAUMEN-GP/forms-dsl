@@ -8,8 +8,8 @@ case class FieldDescription(propertyMap: Map[String, Any])
 object FieldDescription {
   val FieldType: String = "FieldType"
   val ListElementType: String = "ListElementType"
-  val Required: String = "Required"
-  val Label: String = "Label"
+  val Required: String = "_required"
+  val Label: String = "_label"
 
 }
 
