@@ -1,6 +1,9 @@
 package com.naumen.scala.forms
 
 import com.naumen.scala.utils.FieldNameGetter
+import java.text.SimpleDateFormat
+import java.util.Date
+import com.naumen.scala.forms.extensions.FieldCustomizers
 
 
 case class FieldDescription(propertyMap: Map[String, Any])
@@ -92,12 +95,16 @@ case class FormDescriptionBuilder[+T: Manifest](fields: Map[String, FieldDescrip
     fieldBase[Seq[A]](fieldFoo)(_.addProperty(FieldDescription.ListElementType, elementType).required)(foo)
   }
 
+  import FieldCustomizers._
+  val defaultDateFormat = new SimpleDateFormat("dd.MM.yyyy").toPattern
+  def dateOpt(fieldFoo: T => Option[Date]) = fieldBase[Date](fieldFoo)(_.format(defaultDateFormat))  _
+  def date(fieldFoo: T => Date) = fieldBase[Date](fieldFoo)(_.required.format(defaultDateFormat))  _
+
   def name(n: String) = copy(attrs = attrs + ("name" -> n))
 
   def build = FormDescription(fields = fields, attrs = attrs)
 
 }
-
 
 object FormBuilderDsl {
   def emptyFormBuilder[T: Manifest] = new FormDescriptionBuilder[T]()

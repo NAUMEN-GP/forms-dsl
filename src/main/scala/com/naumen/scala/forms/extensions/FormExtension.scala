@@ -1,20 +1,7 @@
 package com.naumen.scala.forms.extensions
 
-import com.naumen.scala.forms.{FieldDescriptionBuilder, FormDescriptionBuilder}
 import java.util.Date
-import com.naumen.scala.utils.FieldNameGetter
-import com.naumen.scala.forms.FormDescriptionBuilder
 import com.naumen.scala.forms.FieldDescriptionBuilder
-import java.text.SimpleDateFormat
-
-object FormExtension extends FieldNameGetter {
-  val defaultDateFormat = new SimpleDateFormat("dd.MM.yyyy").toPattern
-  import FieldCustomizers._
-  implicit class MyFormExtender[T: Manifest](val fb: FormDescriptionBuilder[T]) {
-    def dateOpt(fieldFoo: T => Option[Date]) = fb.fieldBase[Date](fieldFoo)(_.format(defaultDateFormat))  _
-    def date(fieldFoo: T => Date) = fb.fieldBase[Date](fieldFoo)(_.required.format(defaultDateFormat))  _
-  }
-}
 
 
 object FieldCustomizers {
