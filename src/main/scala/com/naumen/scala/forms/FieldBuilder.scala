@@ -92,7 +92,7 @@ case class FormDescriptionBuilder[+T: Manifest](fields: Map[String, FieldDescrip
   def seq[A: Manifest](fieldFoo: T => Seq[A])(foo: FieldDescriptionBuilder[Seq[A]] => FieldDescriptionBuilder[Seq[A]])   = {
     val elementType = implicitly[Manifest[A]].runtimeClass
 
-    fieldBase[Seq[A]](fieldFoo)(_.addProperty(FieldDescription.ListElementType, elementType).required)(foo)
+    fieldBase[Seq[A]](fieldFoo)(_.addProperty(FieldDescription.ListElementType, elementType))(foo)
   }
 
   import FieldCustomizers._
