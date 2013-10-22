@@ -13,6 +13,7 @@ object FieldDescription {
   val ListElementType: String = "ListElementType"
   val Required: String = "_required"
   val Label: String = "_label"
+  val Placeholder: String = "_placeholder"
 
 }
 
@@ -25,6 +26,8 @@ case class FieldDescriptionBuilder[T](propertyMap: Map[String, Any]) {
   def getProperty(key: String): Option[Any] = propertyMap.get(key)
 
   def label(l: String): FieldDescriptionBuilder[T] = addProperty(FieldDescription.Label, l)
+
+  def placeholder(l: String): FieldDescriptionBuilder[T] = addProperty(FieldDescription.Placeholder, l)
 
   def required: FieldDescriptionBuilder[T] = addProperty(FieldDescription.Required, true)
 
