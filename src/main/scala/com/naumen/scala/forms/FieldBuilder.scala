@@ -8,14 +8,16 @@ import com.naumen.scala.forms.extensions.FieldCustomizers
 
 case class FieldDescription(propertyMap: Map[String, Any])
 
-object FieldDescription {
+trait FieldDescriptionAttrs {
   val FieldType: String = "FieldType"
   val ListElementType: String = "ListElementType"
-  val Required: String = "_required"
-  val Label: String = "_label"
-  val Placeholder: String = "_placeholder"
+  val Required: String = "Required"
+  val Label: String = "Label"
+  val Placeholder: String = "Placeholder"
 
 }
+
+object FieldDescription extends FieldDescriptionAttrs
 
 case class FieldDescriptionBuilder[T](propertyMap: Map[String, Any]) {
   def addProperty(key: String, value: Any): FieldDescriptionBuilder[T] = copy(propertyMap = propertyMap + (key -> value))
@@ -33,16 +35,6 @@ case class FieldDescriptionBuilder[T](propertyMap: Map[String, Any]) {
 
 
   def build = FieldDescription(propertyMap: Map[String, Any])
-}
-
-object FieldBuilderExtenders {
-
-  implicit class StringFieldBuilderExtender(val fb: FieldDescriptionBuilder[String]) {
-    def maxSize(s: Int): FieldDescriptionBuilder[String] = fb.addProperty("_maxSize", s)
-
-    def label(l: String): FieldDescriptionBuilder[String] = fb.addProperty("_label", l)
-  }
-
 }
 
 case class FormDescription(fields: Map[String, FieldDescription] = Map(), attrs: Map[String, Any] = Map())

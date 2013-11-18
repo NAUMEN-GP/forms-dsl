@@ -6,7 +6,7 @@ import com.naumen.scala.forms.FieldDescriptionBuilder
 
 object FieldCustomizers {
 
-  import FieldAttributes._
+  import FieldExtensionsAttrs._
 
   implicit class StringFieldBuilderExtender(val fb: FieldDescriptionBuilder[String])
     {
@@ -19,12 +19,14 @@ object FieldCustomizers {
   }
   implicit class DateFieldBuilderExtender(val fb: FieldDescriptionBuilder[Date])
   {
-    def format(datePattern: String) = fb.addProperty(DatePattern, datePattern)
+    def format(datePattern: String) = fb.addProperty(DateFormat, datePattern)
   }
 }
 
-object FieldAttributes {
-  val DatePattern = "DateFormat"
+trait FieldExtensionsAttrs {
+  val DateFormat = "DateFormat"
   val MinLength = "MinLength"
   val MaxLength = "MaxLength"
 }
+
+object FieldExtensionsAttrs extends FieldExtensionsAttrs
