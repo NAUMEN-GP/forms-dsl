@@ -78,6 +78,10 @@ case class FormDescriptionBuilder[+T: Manifest](fields: Map[String, FieldDescrip
   def int(fieldFoo: T => Int) = fieldBase[Int](fieldFoo)(_.required) _
 
   def intOpt(fieldFoo: T => Option[Int]) = fieldBase[Int](fieldFoo)(identity) _
+    
+  def bigDecimal(fieldFoo: T => BigDecimal) = fieldBase[BigDecimal](fieldFoo)(_.required) _
+
+  def bigDecimalOpt(fieldFoo: T => Option[BigDecimal]) = fieldBase[BigDecimal](fieldFoo)(identity) _
 
   def fieldBase[F: Manifest](fieldFoo: T => Any)
                             (foo: FieldDescriptionBuilder[F] => FieldDescriptionBuilder[F])
