@@ -65,7 +65,7 @@ case class FormDescriptionBuilder[+T: Manifest](fields: Map[String, FieldDescrip
     addFieldDescription(fieldName, foo(initialBuilder).build)
   }
 
-  def boolean(fieldFoo: T => Boolean) = fieldBase[Boolean](fieldFoo)(identity) _
+  def boolean(fieldFoo: T => Boolean) = fieldBase[Boolean](fieldFoo)(_.required) _
 
   def string(fieldFoo: T => String) =
     fieldBase[String](fieldFoo)(_.required) _
