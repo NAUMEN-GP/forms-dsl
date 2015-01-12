@@ -54,9 +54,9 @@ case class FormDescriptionBuilder[+T: Manifest](fields: Map[String, FieldDescrip
   def fieldOpt[F: Manifest](fieldFoo: T => Option[F])(foo: FieldFoo[F]) =
     fieldWithCustomName($[T](fieldFoo))(foo)
 
-  def fieldOptNamed[F: Manifest](fieldFoo: T => Option[F], fieldName: String)(foo: FieldFoo[F]) = {
+  //TODO fieldFoo используется только для вывода типа T. Сделать вывод типа по-другому и убрать ее.
+  def fieldOptNamed[F: Manifest](fieldFoo: T => Option[F], fieldName: String)(foo: FieldFoo[F]) =
     fieldWithCustomName(fieldName)(foo)
-  }
 
   def extend[S >: T](foo: FormDescriptionBuilder[S] => FormDescriptionBuilder[S]): FormDescriptionBuilder[T] = {
     foo(this).asInstanceOf[FormDescriptionBuilder[T]]
