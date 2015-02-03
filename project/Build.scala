@@ -15,8 +15,7 @@ object Build extends Build {
   scalacOptions in Test ++= Seq("-Yrangepos")           ,
 
 
-  resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
-    "releases"  at "http://oss.sonatype.org/content/repositories/releases")   ,
+  resolvers += Resolver.sonatypeRepo("releases"),
 
     organization := "com.naumen",
     mainClass in (Compile, run) := Some("play.core.server.NettyServer")
